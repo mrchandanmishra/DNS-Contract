@@ -27,8 +27,8 @@ import './tasks/seed'
 dotenv.config()
 
 let real_accounts = undefined
-if (process.env.DEPLOYER_KEY) {
-  real_accounts = [process.env.DEPLOYER_KEY]
+if (process.env.PRIVATE_KEY) {
+  real_accounts = [process.env.PRIVATE_KEY]
 }
 
 // circular dependency shared with actions
@@ -64,6 +64,13 @@ const config: HardhatUserConfig = {
       tags: ['test', 'legacy', 'use_root'],
       chainId: 11155111,
       accounts: real_accounts,
+    },
+    scrollTestnet: {
+      url: 'https://sepolia-rpc.scroll.io/',
+      chainId: 534351,
+      accounts: real_accounts,
+      tags: ['test', 'use_root'],
+      gasPrice: 1000000000, // 1 gwei
     },
   },
   mocha: { timeout: 400000000 },

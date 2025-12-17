@@ -13,7 +13,7 @@ contract ExponentialPremiumPriceOracle is StablePriceOracle {
         uint256[] memory _rentPrices,
         uint256 _startPremium,
         uint256 totalDays
-    ) StablePriceOracle(_rentPrices) {
+    ) StablePriceOracle(_usdOracle, _rentPrices) {
         startPremium = _startPremium;
         endValue = _startPremium >> totalDays;
     }
